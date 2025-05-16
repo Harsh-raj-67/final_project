@@ -1,0 +1,87 @@
+<div class="flex justify-center w-full mt-10">
+  <div class="bg-white p-8 rounded shadow-md w-6/12 sm:w-96">
+    <h2 class="text-2xl font-bold mb-4">Register</h2>
+    <form [formGroup]="registerForm">
+      
+      <!-- Name -->
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <mat-label>Name</mat-label>
+          <input type="text" formControlName="name" matInput placeholder="Your Name" required />
+          <mat-hint>Enter your full name (at least 2 characters).</mat-hint>
+          <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+            Name is required.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('name')?.hasError('minlength')">
+            Name must be at least 2 characters.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input type="text" formControlName="email" matInput placeholder="Your Email" required />
+          <mat-hint>Provide a valid email address (e.g., user&#64;example.com).</mat-hint>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+            Email is required.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+            Enter a valid email.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('pattern')">
+            Email format is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput placeholder="Your Password" required />
+          <mat-hint>Password must contain at least 8 characters including uppercase, lowercase, number, and special character.</mat-hint>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('pattern')">
+            Password must include uppercase, lowercase, number, and special character.
+          </mat-error>
+        </mat-form-field>
+      </div>  
+
+      <!-- Security Question -->
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <mat-label>Security Question</mat-label>
+          <input type="text" formControlName="securityQuestion" matInput placeholder="e.g., What is your pet's name?" required />
+          <mat-hint>This will help you recover your password if you forget it.</mat-hint>
+          <mat-error *ngIf="registerForm.get('securityQuestion')?.hasError('required')">
+            Security question is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Security Answer -->
+      <div class="mb-6">
+        <mat-form-field class="w-full">
+          <mat-label>Security Answer</mat-label>
+          <input type="text" formControlName="securityAnswer" matInput placeholder="Your Answer" required />
+          <mat-hint>Answer should be easy to remember but hard for others to guess.</mat-hint>
+          <mat-error *ngIf="registerForm.get('securityAnswer')?.hasError('required')">
+            Security answer is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Register Button -->
+      <button mat-raised-button color="primary" (click)="register()" [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </form>
+  </div>
+</div>
